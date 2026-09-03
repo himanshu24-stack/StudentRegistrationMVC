@@ -1,0 +1,101 @@
+@{
+    ViewData["Title"] = "Welcome";
+}
+
+<div class="container py-5">
+    <!-- Hero Section -->
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-7">
+            <span class="badge bg-primary px-3 py-2 fs-6 rounded-pill mb-3">
+                <i class="bi bi-stars me-1"></i> ASP.NET Core MVC &amp; SQL Server
+            </span>
+            <h1 class="display-4 fw-bold text-dark mb-3">
+                Modern Student Registration System
+            </h1>
+            <p class="lead text-muted mb-4">
+                A robust, responsive web application for managing student admissions, recording personal, academic, address, parent, and hostel details with end-to-end data validation and SQL Server database persistence.
+            </p>
+            <div class="d-flex gap-3 flex-wrap">
+                <a asp-controller="Student" asp-action="Create" class="btn btn-primary btn-lg px-4 shadow-sm">
+                    <i class="bi bi-person-plus-fill me-2"></i> Register New Student
+                </a>
+                <a asp-controller="Student" asp-action="List" class="btn btn-outline-secondary btn-lg px-4">
+                    <i class="bi bi-card-checklist me-2"></i> View Registered Students
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-center">
+            <div class="card border-0 shadow-lg rounded-4 p-4 bg-white">
+                <div class="card-body">
+                    <div class="display-1 text-primary mb-3">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <h4 class="fw-bold">Fast &amp; Intuitive Registration</h4>
+                    <p class="text-muted small">
+                        Organized into 6 clean sections with interactive dynamic controls and real-time client &amp; server validations.
+                    </p>
+                    <hr />
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <h5 class="fw-bold text-primary mb-0">6</h5>
+                            <small class="text-muted">Sections</small>
+                        </div>
+                        <div class="col-4">
+                            <h5 class="fw-bold text-primary mb-0">25+</h5>
+                            <small class="text-muted">Fields</small>
+                        </div>
+                        <div class="col-4">
+                            <h5 class="fw-bold text-success mb-0">SQL</h5>
+                            <small class="text-muted">Database</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature Highlight Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 p-3">
+                <div class="card-body">
+                    <div class="fs-2 text-primary mb-3">
+                        <i class="bi bi-ui-checks-grid"></i>
+                    </div>
+                    <h5 class="fw-bold">Structured Form Design</h5>
+                    <p class="text-muted small">
+                        Features radio buttons for gender, dropdowns for courses/departments/semesters, and dynamic show/hide for hostel allocation.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 p-3">
+                <div class="card-body">
+                    <div class="fs-2 text-success mb-3">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h5 class="fw-bold">Dual-Tier Validation</h5>
+                    <p class="text-muted small">
+                        Data Annotations on the model guarantee data integrity on both the client (jQuery unobtrusive) and server (`ModelState.IsValid`).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 p-3">
+                <div class="card-body">
+                    <div class="fs-2 text-info mb-3">
+                        <i class="bi bi-database-check"></i>
+                    </div>
+                    <h5 class="fw-bold">SQL Server &amp; EF Core</h5>
+                    <p class="text-muted small">
+                        Configured with Entity Framework Core to automatically manage schema creation and persist records to SQL Server LocalDB.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+@model StudentRegistrationMVC.Models.Student
+
+@{
+    ViewData["Title"] = "Registration Successful";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow-lg rounded-4 text-center overflow-hidden">
+                <!-- Success Header Banner -->
+                <div class="card-header bg-success text-white py-4 border-0">
+                    <div class="display-3 mb-2">
+                        <i class="bi bi-check-circle-fill"></i>
+                    </div>
+                    <h2 class="fw-bold mb-0">Student Registration Successful!</h2>
+                    <p class="mb-0 text-white-50">Student record has been saved successfully to the database.</p>
+                </div>
+
+                <!-- Registration Summary Card Body -->
+                <div class="card-body p-4 p-md-5">
+                    <div class="alert alert-light border shadow-sm p-4 rounded-3 mb-4 text-start">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <small class="text-muted text-uppercase fw-semibold d-block">Student ID</small>
+                                <span class="fs-4 fw-bold text-primary">#@Model.StudentId</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <small class="text-muted text-uppercase fw-semibold d-block">Enrollment Number</small>
+                                <span class="fs-4 fw-bold text-dark">@Model.EnrollmentNumber</span>
+                            </div>
+                            <div class="col-12"><hr class="my-2" /></div>
+                            <div class="col-sm-6">
+                                <small class="text-muted text-uppercase fw-semibold d-block">Student Name</small>
+                                <span class="fs-5 fw-semibold text-dark">@Model.FullName</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <small class="text-muted text-uppercase fw-semibold d-block">Course & Semester</small>
+                                <span class="fs-5 fw-semibold text-dark">@Model.Course (@Model.Semester)</span>
+                            </div>
+                            <div class="col-12">
+                                <small class="text-muted text-uppercase fw-semibold d-block">Email & Mobile</small>
+                                <span class="text-secondary">@Model.Email | +91 @Model.MobileNumber</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                        <a asp-action="Details" asp-route-id="@Model.StudentId" class="btn btn-primary btn-lg px-4 shadow-sm">
+                            <i class="bi bi-person-lines-fill me-1"></i> View Student Details
+                        </a>
+                        <a asp-action="Create" class="btn btn-outline-success btn-lg px-4">
+                            <i class="bi bi-person-plus-fill me-1"></i> Register Another Student
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-light py-3 border-0">
+                    <a asp-action="List" class="text-decoration-none text-muted small">
+                        <i class="bi bi-arrow-left me-1"></i> Return to All Registered Students List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

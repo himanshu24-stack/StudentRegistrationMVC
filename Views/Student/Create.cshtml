@@ -1,0 +1,401 @@
+@model StudentRegistrationMVC.Models.Student
+
+@{
+    ViewData["Title"] = "Student Registration Form";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Header Card -->
+            <div class="card border-0 shadow-sm mb-4 bg-primary text-white rounded-3">
+                <div class="card-body p-4 text-center">
+                    <h2 class="display-6 fw-bold mb-2">Student Registration System</h2>
+                    <p class="mb-0 text-white-50">Please fill out all the required details carefully to complete your enrollment.</p>
+                </div>
+            </div>
+
+            <form asp-controller="Student" asp-action="Create" method="post" id="registrationForm" novalidate>
+                @Html.AntiForgeryToken()
+
+                <!-- Summary Validation Banner -->
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger shadow-sm mb-4" role="alert"></div>
+
+                <!-- ========================================================================= -->
+                <!-- SECTION A: PERSONAL INFORMATION -->
+                <!-- ========================================================================= -->
+                <div class="card shadow-sm border-0 mb-4 rounded-3">
+                    <div class="card-header bg-light border-bottom py-3">
+                        <h5 class="card-title text-primary mb-0 fw-semibold">
+                            <span class="badge bg-primary me-2">A</span> Personal Information
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <!-- First Name -->
+                            <div class="col-md-4">
+                                <label asp-for="FirstName" class="form-label fw-medium">First Name <span class="text-danger">*</span></label>
+                                <input asp-for="FirstName" class="form-control" placeholder="Enter first name" />
+                                <span asp-validation-for="FirstName" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Middle Name -->
+                            <div class="col-md-4">
+                                <label asp-for="MiddleName" class="form-label fw-medium">Middle Name</label>
+                                <input asp-for="MiddleName" class="form-control" placeholder="Enter middle name (optional)" />
+                                <span asp-validation-for="MiddleName" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="col-md-4">
+                                <label asp-for="LastName" class="form-label fw-medium">Last Name <span class="text-danger">*</span></label>
+                                <input asp-for="LastName" class="form-control" placeholder="Enter last name" />
+                                <span asp-validation-for="LastName" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Date of Birth -->
+                            <div class="col-md-4">
+                                <label asp-for="DateOfBirth" class="form-label fw-medium">Date of Birth <span class="text-danger">*</span></label>
+                                <input asp-for="DateOfBirth" class="form-control" type="date" />
+                                <span asp-validation-for="DateOfBirth" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Gender Radio Buttons -->
+                            <div class="col-md-4">
+                                <label class="form-label fw-medium d-block">Gender <span class="text-danger">*</span></label>
+                                <div class="pt-2">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" asp-for="Gender" id="genderMale" value="Male" />
+                                        <label class="form-check-label" for="genderMale">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" asp-for="Gender" id="genderFemale" value="Female" />
+                                        <label class="form-check-label" for="genderFemale">Female</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" asp-for="Gender" id="genderOther" value="Other" />
+                                        <label class="form-check-label" for="genderOther">Other</label>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="Gender" class="text-danger small d-block"></span>
+                            </div>
+
+                            <!-- Blood Group Dropdown -->
+                            <div class="col-md-4">
+                                <label asp-for="BloodGroup" class="form-label fw-medium">Blood Group <span class="text-danger">*</span></label>
+                                <select asp-for="BloodGroup" asp-items="ViewBag.BloodGroups" class="form-select">
+                                    <option value="">-- Select Blood Group --</option>
+                                </select>
+                                <span asp-validation-for="BloodGroup" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================================================= -->
+                <!-- SECTION B: CONTACT INFORMATION -->
+                <!-- ========================================================================= -->
+                <div class="card shadow-sm border-0 mb-4 rounded-3">
+                    <div class="card-header bg-light border-bottom py-3">
+                        <h5 class="card-title text-primary mb-0 fw-semibold">
+                            <span class="badge bg-primary me-2">B</span> Contact Information
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <!-- Email -->
+                            <div class="col-md-6">
+                                <label asp-for="Email" class="form-label fw-medium">Email Address <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i>@@</span>
+                                    <input asp-for="Email" class="form-control" type="email" placeholder="example@domain.com" />
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Mobile Number -->
+                            <div class="col-md-6">
+                                <label asp-for="MobileNumber" class="form-label fw-medium">Mobile Number <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">+91</span>
+                                    <input asp-for="MobileNumber" class="form-control" maxlength="10" placeholder="10-digit mobile number" />
+                                </div>
+                                <span asp-validation-for="MobileNumber" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================================================= -->
+                <!-- SECTION C: ADDRESS INFORMATION -->
+                <!-- ========================================================================= -->
+                <div class="card shadow-sm border-0 mb-4 rounded-3">
+                    <div class="card-header bg-light border-bottom py-3">
+                        <h5 class="card-title text-primary mb-0 fw-semibold">
+                            <span class="badge bg-primary me-2">C</span> Address Information
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <!-- Residential Address (Textarea) -->
+                            <div class="col-12">
+                                <label asp-for="Address" class="form-label fw-medium">Residential Address <span class="text-danger">*</span></label>
+                                <textarea asp-for="Address" class="form-control" rows="3" placeholder="Enter house no., street, landmark, area"></textarea>
+                                <span asp-validation-for="Address" class="text-danger small"></span>
+                            </div>
+
+                            <!-- City -->
+                            <div class="col-md-3">
+                                <label asp-for="City" class="form-label fw-medium">City <span class="text-danger">*</span></label>
+                                <input asp-for="City" class="form-control" placeholder="City name" />
+                                <span asp-validation-for="City" class="text-danger small"></span>
+                            </div>
+
+                            <!-- State -->
+                            <div class="col-md-3">
+                                <label asp-for="State" class="form-label fw-medium">State <span class="text-danger">*</span></label>
+                                <input asp-for="State" class="form-control" placeholder="State name" />
+                                <span asp-validation-for="State" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Pincode -->
+                            <div class="col-md-3">
+                                <label asp-for="Pincode" class="form-label fw-medium">Pincode <span class="text-danger">*</span></label>
+                                <input asp-for="Pincode" class="form-control" maxlength="6" placeholder="6-digit pincode" />
+                                <span asp-validation-for="Pincode" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Country -->
+                            <div class="col-md-3">
+                                <label asp-for="Country" class="form-label fw-medium">Country <span class="text-danger">*</span></label>
+                                <input asp-for="Country" class="form-control" placeholder="Country" />
+                                <span asp-validation-for="Country" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================================================= -->
+                <!-- SECTION D: ACADEMIC INFORMATION -->
+                <!-- ========================================================================= -->
+                <div class="card shadow-sm border-0 mb-4 rounded-3">
+                    <div class="card-header bg-light border-bottom py-3">
+                        <h5 class="card-title text-primary mb-0 fw-semibold">
+                            <span class="badge bg-primary me-2">D</span> Academic Information
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <!-- Course Dropdown -->
+                            <div class="col-md-4">
+                                <label asp-for="Course" class="form-label fw-medium">Course <span class="text-danger">*</span></label>
+                                <select asp-for="Course" asp-items="ViewBag.Courses" class="form-select">
+                                    <option value="">-- Select Course --</option>
+                                </select>
+                                <span asp-validation-for="Course" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Department Dropdown -->
+                            <div class="col-md-4">
+                                <label asp-for="Department" class="form-label fw-medium">Department <span class="text-danger">*</span></label>
+                                <select asp-for="Department" asp-items="ViewBag.Departments" class="form-select">
+                                    <option value="">-- Select Department --</option>
+                                </select>
+                                <span asp-validation-for="Department" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Semester Dropdown -->
+                            <div class="col-md-4">
+                                <label asp-for="Semester" class="form-label fw-medium">Semester <span class="text-danger">*</span></label>
+                                <select asp-for="Semester" asp-items="ViewBag.Semesters" class="form-select">
+                                    <option value="">-- Select Semester --</option>
+                                </select>
+                                <span asp-validation-for="Semester" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Enrollment Number -->
+                            <div class="col-md-4">
+                                <label asp-for="EnrollmentNumber" class="form-label fw-medium">Enrollment Number <span class="text-danger">*</span></label>
+                                <input asp-for="EnrollmentNumber" class="form-control" placeholder="e.g. ENR20261001" />
+                                <span asp-validation-for="EnrollmentNumber" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Previous School / College -->
+                            <div class="col-md-5">
+                                <label asp-for="PreviousSchoolCollege" class="form-label fw-medium">Previous School / College <span class="text-danger">*</span></label>
+                                <input asp-for="PreviousSchoolCollege" class="form-control" placeholder="Previous school or institution name" />
+                                <span asp-validation-for="PreviousSchoolCollege" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Percentage -->
+                            <div class="col-md-3">
+                                <label asp-for="Percentage" class="form-label fw-medium">Previous Percentage (%) <span class="text-danger">*</span></label>
+                                <input asp-for="Percentage" class="form-control" type="number" step="0.01" min="0" max="100" placeholder="e.g. 85.50" />
+                                <span asp-validation-for="Percentage" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================================================= -->
+                <!-- SECTION E: PARENT / GUARDIAN INFORMATION -->
+                <!-- ========================================================================= -->
+                <div class="card shadow-sm border-0 mb-4 rounded-3">
+                    <div class="card-header bg-light border-bottom py-3">
+                        <h5 class="card-title text-primary mb-0 fw-semibold">
+                            <span class="badge bg-primary me-2">E</span> Parent / Guardian Information
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <!-- Father's Name -->
+                            <div class="col-md-6">
+                                <label asp-for="FatherName" class="form-label fw-medium">Father's Name <span class="text-danger">*</span></label>
+                                <input asp-for="FatherName" class="form-control" placeholder="Enter father's full name" />
+                                <span asp-validation-for="FatherName" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Mother's Name -->
+                            <div class="col-md-6">
+                                <label asp-for="MotherName" class="form-label fw-medium">Mother's Name <span class="text-danger">*</span></label>
+                                <input asp-for="MotherName" class="form-control" placeholder="Enter mother's full name" />
+                                <span asp-validation-for="MotherName" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Guardian's Name -->
+                            <div class="col-md-6">
+                                <label asp-for="GuardianName" class="form-label fw-medium">Guardian's Name (Optional)</label>
+                                <input asp-for="GuardianName" class="form-control" placeholder="Enter guardian's name if applicable" />
+                                <span asp-validation-for="GuardianName" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Guardian Mobile Number -->
+                            <div class="col-md-6">
+                                <label asp-for="GuardianMobileNumber" class="form-label fw-medium">Guardian's Mobile Number (Optional)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">+91</span>
+                                    <input asp-for="GuardianMobileNumber" class="form-control" maxlength="10" placeholder="10-digit mobile number" />
+                                </div>
+                                <span asp-validation-for="GuardianMobileNumber" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================================================= -->
+                <!-- SECTION F: ADDITIONAL INFORMATION -->
+                <!-- ========================================================================= -->
+                <div class="card shadow-sm border-0 mb-4 rounded-3">
+                    <div class="card-header bg-light border-bottom py-3">
+                        <h5 class="card-title text-primary mb-0 fw-semibold">
+                            <span class="badge bg-primary me-2">F</span> Additional Information
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <!-- Hobbies (Textarea) -->
+                            <div class="col-12">
+                                <label asp-for="Hobbies" class="form-label fw-medium">Hobbies & Interests</label>
+                                <textarea asp-for="Hobbies" class="form-control" rows="2" placeholder="e.g. Reading, Coding, Sports, Music"></textarea>
+                                <span asp-validation-for="Hobbies" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Hosteller Checkbox -->
+                            <div class="col-md-4 d-flex align-items-center">
+                                <div class="form-check form-switch pt-3">
+                                    <input asp-for="IsHosteller" class="form-check-input" type="checkbox" id="chkIsHosteller" style="cursor: pointer; width: 2.5em; height: 1.3em;" />
+                                    <label class="form-check-label fw-medium ms-2 pt-1" for="chkIsHosteller" style="cursor: pointer;">
+                                        Is Hosteller?
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Hostel Name (Shown when IsHosteller is checked) -->
+                            <div class="col-md-8" id="hostelNameContainer" style="display: none;">
+                                <label asp-for="HostelName" class="form-label fw-medium">Hostel Name <span class="text-danger">*</span></label>
+                                <input asp-for="HostelName" class="form-control" id="txtHostelName" placeholder="Enter allotted hostel / block name" />
+                                <span asp-validation-for="HostelName" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-12"><hr class="my-2" /></div>
+
+                            <!-- Emergency Contact Person -->
+                            <div class="col-md-6">
+                                <label asp-for="EmergencyContactName" class="form-label fw-medium">Emergency Contact Name <span class="text-danger">*</span></label>
+                                <input asp-for="EmergencyContactName" class="form-control" placeholder="Person to contact in emergency" />
+                                <span asp-validation-for="EmergencyContactName" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Emergency Contact Number -->
+                            <div class="col-md-6">
+                                <label asp-for="EmergencyContactNumber" class="form-label fw-medium">Emergency Contact Number <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">+91</span>
+                                    <input asp-for="EmergencyContactNumber" class="form-control" maxlength="10" placeholder="10-digit emergency number" />
+                                </div>
+                                <span asp-validation-for="EmergencyContactNumber" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================================================= -->
+                <!-- FORM ACTION BUTTONS -->
+                <!-- ========================================================================= -->
+                <div class="card shadow-sm border-0 mb-5 rounded-3 bg-light">
+                    <div class="card-body p-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div>
+                            <button type="reset" class="btn btn-outline-secondary px-4 py-2" id="btnResetForm">
+                                <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Form
+                            </button>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <a asp-action="List" class="btn btn-outline-primary px-4 py-2">
+                                <i class="bi bi-list-ul me-1"></i> View Registered Students
+                            </a>
+                            <button type="submit" class="btn btn-success px-5 py-2 fw-semibold shadow-sm">
+                                <i class="bi bi-check-circle-fill me-1"></i> Submit Registration
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Standard Client-Side Validation Scripts -->
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const chkHosteller = document.getElementById("chkIsHosteller");
+            const hostelContainer = document.getElementById("hostelNameContainer");
+            const txtHostelName = document.getElementById("txtHostelName");
+
+            // Function to toggle hostel name visibility
+            function toggleHostelName() {
+                if (chkHosteller.checked) {
+                    hostelContainer.style.display = "block";
+                    txtHostelName.setAttribute("required", "required");
+                } else {
+                    hostelContainer.style.display = "none";
+                    txtHostelName.removeAttribute("required");
+                    txtHostelName.value = "";
+                }
+            }
+
+            // Initial check on page load (for pre-filled/validation postback states)
+            toggleHostelName();
+
+            // Event listener on checkbox change
+            chkHosteller.addEventListener("change", toggleHostelName);
+
+            // Reset button handler to reset dynamic UI state
+            document.getElementById("btnResetForm").addEventListener("click", function () {
+                setTimeout(toggleHostelName, 50);
+            });
+        });
+    </script>
+}
